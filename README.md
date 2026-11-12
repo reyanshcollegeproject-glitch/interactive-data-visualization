@@ -3,6 +3,9 @@
 > **An interactive data visualization model for high-stakes career transitions, startup ventures, and personal financial decisions.**
 > Designed strictly following **Apple Human Interface Guidelines (HIG)**: subtle typography, refined Cupertino color accents, zero neo/neon colors, and responsive retina graphics.
 
+🔗 **Live Interactive App**: [https://reyanshcollegeproject-glitch.github.io/interactive-data-visualization/](https://reyanshcollegeproject-glitch.github.io/interactive-data-visualization/)  
+📦 **GitHub Repository**: [https://github.com/reyanshcollegeproject-glitch/interactive-data-visualization](https://github.com/reyanshcollegeproject-glitch/interactive-data-visualization)
+
 ---
 
 ## 🎯 Executive Summary & Scenario Selection
