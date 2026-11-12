@@ -1,123 +1,87 @@
-# Runway Studio — Interactive Decision & Capital Simulator
+# Runway Studio — Empirical Decision & Capital Simulator
 
-> **An interactive data visualization model for high-stakes career transitions, startup ventures, and personal financial decisions.**
+> **An interactive data visualization model for high-stakes career transitions, relocation decisions, and capital runway planning.**  
+> Powered by a **Python Data Pipeline** and **100% real empirical data** from the **U.S. Bureau of Labor Statistics (BLS)**, **U.S. Department of Housing & Urban Development (HUD)**, **IRS 2024 Tax Brackets**, and **Robert Shiller's Yale S&P 500 / CPI Inflation Series**.  
 > Designed strictly following **Apple Human Interface Guidelines (HIG)**: subtle typography, refined Cupertino color accents, zero neo/neon colors, and responsive retina graphics.
 
-🔗 **Live Interactive App**: [https://reyanshcollegeproject-glitch.github.io/interactive-data-visualization/](https://reyanshcollegeproject-glitch.github.io/interactive-data-visualization/)  
+🔗 **Live Interactive App (GitHub Pages)**: [https://reyanshcollegeproject-glitch.github.io/interactive-data-visualization/](https://reyanshcollegeproject-glitch.github.io/interactive-data-visualization/)  
 📦 **GitHub Repository**: [https://github.com/reyanshcollegeproject-glitch/interactive-data-visualization](https://github.com/reyanshcollegeproject-glitch/interactive-data-visualization)
 
 ---
 
-## 🎯 Executive Summary & Scenario Selection
+## 📸 Real Visual Output Preview
 
-### 1. The Decision Problem
-One of the most consequential decisions people struggle with is the **Career Leap Dilemma**: *“Can I afford to leave my salaried role to pursue a new startup, creative studio, freelance career, or graduate degree without risking insolvency?”*
+### 1. Interactive Apple HIG Web Application
+![Runway Studio Dashboard](screenshot.png)
 
-Without quantitative modeling, people rely on rough mental math or anxiety-driven guesses. **Runway Studio** eliminates ambiguity by modeling the trajectory of capital reserves across a 24-month horizon based on real-world levers.
-
----
-
-## 📋 Step-by-Step Guide Checklist
-
-### Phase I: Pick Your Scenario
-- [x] **Choose your scenario**: Career Pivot & Financial Runway Decision Engine (*Can I afford to make the leap?*).
-- [x] **Decide which variables matter**:
-  1. **Initial Cash Reserves ($)**: Liquid seed capital available on Day 1.
-  2. **Baseline Monthly Burn ($/mo)**: Non-negotiable living expenses (rent, food, healthcare, utilities).
-  3. **Target Monthly Income ($/mo)**: Expected steady-state revenue from contracts, venture, or product sales.
-  4. **Revenue Ramp Horizon (Months)**: Time required to progress from $0 to full target revenue.
-  5. **Contingency / Tax Buffer (+18%)**: Self-employment tax and unexpected medical/operational overhead.
-  6. **Side-Income Floor (+$1,200/mo)**: Guaranteed baseline buffer (tutoring, advisory, part-time contract).
+### 2. Python Matplotlib Empirical Comparison Chart
+![Python Real Data Decision Chart](real_data_decision_chart.png)
 
 ---
 
-### Phase II: Build the Data Visualization
-- [x] **Build the data visualization**: Structured into a reactive single-page application (`index.html`, `styles.css`, `app.js`).
-- [x] **Adjust the variables to refine the visualization**: Implemented real-time linear interpolation, dual-band revenue/burn indicators, and smooth Bezier splines.
-- [x] **Test each slider**:
-  - *Savings Slider* ($5,000 – $150,000)
-  - *Monthly Burn Slider* ($1,200 – $12,000)
-  - *Target Revenue Slider* ($0 – $20,000)
-  - *Ramp Speed Slider* (1 – 18 months)
-  - *Dual Safeguard Toggles* (Tax contingency & side income)
-- [x] **Restyle it**:
-  - Implemented Apple UI/UX Pro design language:
-    - Neutral canvas (`#F5F5F7`), pure white cards (`#FFFFFF`), micro-borders (`rgba(0,0,0,0.07)`).
-    - Apple System Blue (`#0071E3`), subtle Emerald (`#34C759`), Amber warning (`#FF9500`), and Coral red (`#FF3B30`).
-    - **Strictly zero neon / neo-brutalist styling**.
-    - Retina-scaled HTML5 Canvas with dynamic crosshair hover inspection and floating frosted-glass tooltip.
+## 🏛️ Real Data Provenance & Empirical Sources
+
+This project eliminates synthetic guesswork by pulling directly from official federal and financial sources:
+
+| Dimension | Official Source | Empirical Scope |
+| :--- | :--- | :--- |
+| **Occupational Wages** | **U.S. Bureau of Labor Statistics (BLS)** OEWS (May 2024) | 10th, 25th, 50th (Median), 75th, and 90th percentile salary benchmarks across 8 major metropolitan areas. |
+| **Housing Rents** | **U.S. Dept. of Housing & Urban Development (HUD)** FY2024/2025 | Actual Fair Market Rents (FMR) for Studio, 1-Bedroom, and 2-Bedroom residences in each metro. |
+| **Tax Schedules** | **IRS & State Tax Foundation** (2024/2025) | Federal brackets (10% to 37%), FICA Social Security ($168.6k cap), Medicare, California (up to 9.3%), New York State & NYC local tax, Washington (0%), and Texas (0%). |
+| **Essential Living Costs** | **MIT Living Wage Calculator** | Baseline monthly food, healthcare, transportation, and local utility expenditure benchmarks. |
+| **Macro Inflation Cycles** | **Robert J. Shiller S&P 500 & CPI Dataset** (Yale Economics) | 680+ real historical monthly market and inflation data points (1970–2026), including 1973 Stagflation, 2000 Dot-Com, 2008 GFC, and 2020-2026 inflation shocks. |
 
 ---
 
-### Phase III: Check That It Holds Up
-- [x] **Run a real scenario and sanity-check the math**:
-  - Real Scenario Tested: **Tech Venture Leap**
-    - Starting Capital: **$38,000**
-    - Monthly Burn: **$3,800/mo** + 18% tax buffer = **$4,484/mo**
-    - Target Revenue: **$6,000/mo** ramping over **7 months**
-    - **Result**:
-      - Break-Even Month reached in **Month 6** ($5,142.86 > $4,484)
-      - Minimum Capital Trough: **$28,437** (Lowest dip in Month 6)
-      - 24-Month Ending Balance: **$56,384** (Net Gain of **+$18,384**)
-      - Runway: **Infinite / Self-Sustaining**
-  - Edge Case Tested: **Zero Revenue ($20,000 savings @ $2,000/mo burn)**
-    - Exact mathematical depletion: $20,000 / $2,000 = **10.0 months** (Validated to 0.001 precision).
+## 🐍 Python Architecture & Pipeline
 
----
+The project includes Python data processing and visualization scripts:
 
-## 🧮 Quantitative Mathematical Model
-
-For any given month $m \in \{0, 1, 2, \dots, 24\}$:
-
-1. **Effective Monthly Burn ($B_m$)**:
-   $$\text{Burn}_m = \text{BaseBurn} \times (1 + \text{TaxBufferRate})$$
-
-2. **Total Monthly Revenue ($R_m$)**:
-   $$R_m = \begin{cases} 
-   0 & \text{if } m = 0 \\
-   \text{TargetRevenue} \times \left(\frac{m}{\text{RampMonths}}\right) + \text{SideIncome} & \text{if } 1 \le m \le \text{RampMonths} \\
-   \text{TargetRevenue} + \text{SideIncome} & \text{if } m > \text{RampMonths}
-   \end{cases}$$
-
-3. **Monthly Net Cash Flow ($\Delta C_m$)**:
-   $$\Delta C_m = R_m - B_m$$
-
-4. **Discrete Cash Ledger ($C_m$)**:
-   $$C_0 = \text{InitialReserves}$$
-   $$C_m = C_{m-1} + \Delta C_m = C_0 + \sum_{k=1}^m (R_k - B_k)$$
-
-5. **Fractional Zero-Depletion Interpolation**:
-   If $C_k \le 0$ at month $k$:
-   $$\text{Runway} = (k - 1) + \frac{C_{k-1}}{C_{k-1} - C_k}$$
-
----
-
-## 🚀 How to Run Locally
-
-You can open `index.html` directly in any modern browser:
-
-### Option A: Direct Open
-Double click `index.html` or open it with macOS Chrome/Safari:
+### 1. `process_real_data.py`
+Extracts, cleans, and compiles real empirical data from official endpoints and exports structured data to `real_data.json`:
 ```bash
-open index.html
+python3 process_real_data.py
 ```
 
-### Option B: Local HTTP Server
-Run a local static server from this folder:
+### 2. `visualize_real_data.py`
+A Python data visualization engine built with `matplotlib` that generates the multi-panel Apple HIG-styled comparison chart (`real_data_decision_chart.png`):
 ```bash
-python3 -m http.server 8085
+python3 visualize_real_data.py
 ```
-Then visit `http://localhost:8085` in your browser.
+
+### 3. `generate_app_js.py`
+Embeds the real dataset into `app.js` with zero-latency 60fps reactive canvas binding:
+```bash
+python3 generate_app_js.py
+```
 
 ---
 
-## 🎨 UI/UX Features
-- **Instant Reactive Updates**: Sliders use hardware-accelerated canvas redraws on every input event (0ms latency).
-- **Interactive Tooltip**: Hovering across any month highlights the data point, displays exact bank balance, monthly burn, revenue, and net delta.
-- **Decision Presets**: Includes 4 pre-configured real scenarios:
-  1. *Tech Venture Leap*
-  2. *Campus to Studio*
-  3. *Higher Ed Pivot*
-  4. *Cautious Safety*
-- **Export & Print**: Clean `@media print` CSS formats the entire dashboard into an executive 1-page PDF decision report.
+## 🧮 Quantitative Decision Mathematical Model
 
+For any selected metropolitan area $M$ and gross annual compensation $W$:
+
+1. **IRS Federal & FICA Tax Model**:
+   $$\text{Taxable} = \max(0, W - 14600)$$
+   $$\text{FICA} = \min(W, 168600) \times 0.062 + W \times 0.0145 + \max(0, W - 200000) \times 0.009$$
+   $$\text{Net Annual} = W - (\text{FedTax} + \text{FICA} + \text{StateTax}_M + \text{LocalTax}_M)$$
+
+2. **Total Monthly Living Burn ($B$)**:
+   $$B = \text{HUD\_Rent}_M[\text{HousingType}] + \text{MIT\_Essentials}_M + \text{Discretionary}$$
+
+3. **Net Monthly Cash Flow**:
+   $$\Delta C = \text{NetMonthly} - B$$
+
+4. **Speed to $50,000 Capital Buffer**:
+   $$\text{Months to } \$50\text{k} = \frac{50000}{\Delta C} \quad (\text{if } \Delta C > 0)$$
+
+---
+
+## 📋 Step-by-Step Guide Progress
+
+- [x] **Choose scenario**: Empirical Career Pivot & Relocation Decision Simulator.
+- [x] **Decide variables**: Metro choice, BLS wage percentile, HUD housing option, savings, discretionary spend.
+- [x] **Build visualization**: Built with HTML5 Canvas, Vanilla JS, and Python data pipeline.
+- [x] **Refine & test sliders**: Tested across all 8 metros with real-time recalculation.
+- [x] **Restyle**: Pure Apple Human Interface Design System with SF Pro font stack, zero neo colors.
+- [x] **Check math & integrity**: Verified exact ledger balance equation against real IRS tax schedules.
